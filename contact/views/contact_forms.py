@@ -8,40 +8,20 @@ from contact.models import Contact
 
 
 class ContactForm(forms.ModelForm):
-    first_name = forms.CharField(
-        widget=forms.TextInput(
+    picture = forms.ImageField(
+        widget=forms.FileInput(
             attrs={
-                'class': 'classe-a classe-b',
-                'placeholder': 'Here it came from init',
+                'accept': 'image/*',
             }
-        ),
-        label='Primeiro Nome',
-        help_text='Help text for your user',
-    )
+        )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # self.fields['first_name'].widget.attrs.update({
-        #     'class': 'classe-a classe-b',
-        #     'placeholder': 'Here it came from init',
-        # })
-    
     class Meta:
-        model = Contact
+        model = models.Contact
         fields = (
             'first_name', 'last_name', 'phone',
             'email', 'description', 'category',
+            'picture',
         )
-        
-        # widgets = {
-        #     'first_name': forms.TextInput(
-        #         attrs={
-        #             'class': 'classe-a classe-b',
-        #             'placeholder': 'Write here',
-        #         }
-        #     )
-        # }
 
     def clean(self):
         cleaned_data = self.cleaned_data
@@ -78,7 +58,7 @@ def create(request):
     form_action = reverse('contact:create')
     
     if request.method == 'POST':
-        form = ContactForm(request.POST)
+        form = ContactForm(request.POST, request.FILES)
 
         context = {
             'form': form,
@@ -114,7 +94,7 @@ def update(request, contact_id):
     form_action = reverse('contact:update', args=(contact_id,))
 
     if request.method == 'POST':
-        form = ContactForm(request.POST, instance=contact)
+        form = ContactForm(request.POST, request.FILES, instance=contact)
 
         context = {
             'form': form,
