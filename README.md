@@ -34,6 +34,10 @@ Project of a contact book, made in Django in Python!!
    <pre>python manage.py runserver</pre>
 </p>
 
+### Screen
+![img/Screenshot 2024-02-22 114659.png](https://github.com/daniellimadev/Address_Book_Project_in_Django/blob/main/img/Screenshot%202024-02-22%20114659.png)
+![img/Screenshot 2024-02-22 112047.png](https://github.com/daniellimadev/Address_Book_Project_in_Django/blob/main/img/Screenshot%202024-02-22%20112047.png)
+
 <h3>Author</h3>
 
 <a href="https://www.linkedin.com/in/danielpereiralima/">
